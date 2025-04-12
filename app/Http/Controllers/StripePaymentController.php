@@ -19,7 +19,7 @@ class StripePaymentController extends Controller
 {
     public function stripe()
     {
-        dd('work in progress please contact admin 111');
+        dd('work in progress please contact admin 11111');
         
         return view('stripe');
     }

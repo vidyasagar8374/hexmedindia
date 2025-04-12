@@ -1,0 +1,152 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Feb 25, 2024 at 06:02 AM
+-- Server version: 10.11.7-MariaDB-cll-lve
+-- PHP Version: 7.2.34
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `u430343503_hexamed`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bokked_tests`
+--
+
+CREATE TABLE `bokked_tests` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `mobile` varchar(255) NOT NULL,
+  `address` text NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `dob` varchar(255) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `time` varchar(255) DEFAULT NULL,
+  `gender` varchar(11) NOT NULL,
+  `booking_id` varchar(255) DEFAULT NULL,
+  `testtype` int(11) NOT NULL,
+  `test_id` int(11) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `ref_doctor` varchar(255) DEFAULT NULL,
+  `boy_id` int(11) DEFAULT NULL,
+  `status` varchar(255) NOT NULL,
+  `request_raised` int(11) DEFAULT NULL,
+  `agent_id` int(11) DEFAULT NULL,
+  `franchise_id` int(11) NOT NULL,
+  `cashtype` varchar(255) DEFAULT NULL,
+  `admin_recived` int(11) DEFAULT NULL,
+  `completed` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bokked_tests`
+--
+
+INSERT INTO `bokked_tests` (`id`, `name`, `email`, `mobile`, `address`, `city`, `dob`, `date`, `time`, `gender`, `booking_id`, `testtype`, `test_id`, `price`, `ref_doctor`, `boy_id`, `status`, `request_raised`, `agent_id`, `franchise_id`, `cashtype`, `admin_recived`, `completed`, `created_at`, `updated_at`) VALUES
+(1, 'nagarjuna', 'nag@gmail.com', '8523698745', '3-165, siddepeta', 'ravulapalem', '27', '2024-02-08', '08:00 AM - 09:00 AM', 'male', 'hex-HY-1706771784', 1, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 50, 'Card', NULL, NULL, '2024-02-01 07:17:04', '2024-02-01 07:17:04'),
+(2, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '12', '2024-02-03', '10:00 AM - 11:00 AM', 'male', 'hex-HY-1706772245', 1, NULL, NULL, NULL, 51, 'sample collection pending', NULL, NULL, 50, 'Card', NULL, NULL, '2024-02-01 07:24:07', '2024-02-01 07:24:07'),
+(3, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '12', '2024-02-02', '06:00 AM - 07:00 AM', 'male', 'hex-HY-1706772395', 1, NULL, NULL, NULL, 51, 'completed', 1, NULL, 50, 'Cash', 1, 1, '2024-02-01 07:31:56', '2024-02-01 07:31:56'),
+(4, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'SAS', 'rajamundry', '26', '2024-02-01', '09:00 AM - 10:00 AM', 'male', 'hex-HY-1706781042', 1, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 50, 'Cash', NULL, NULL, '2024-02-01 09:50:48', '2024-02-01 09:50:48'),
+(5, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '12', '2024-02-14', '09:00 AM - 10:00 AM', 'male', 'hex-HY-1706781211', 1, NULL, NULL, NULL, 51, 'sample collection pending', NULL, NULL, 50, 'Card', NULL, NULL, '2024-02-01 09:54:55', '2024-02-01 09:54:55'),
+(6, 'chandu', 'chandu@gmail.com', '08885848123', '3-165', 'rajamundry', '26', '2024-02-09', '05:00 PM - 06:00 PM', 'male', 'hex-HY-1706788458', 1, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 52, 'Card', NULL, NULL, '2024-02-01 12:10:39', '2024-02-01 12:10:38'),
+(7, 'chandu', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '23', '2024-02-02', '06:00 AM - 07:00 AM', 'male', 'hex-HY-1706788705', 1, NULL, NULL, NULL, 53, 'completed', 1, NULL, 52, 'Cash', NULL, 1, '2024-02-01 12:04:17', '2024-02-01 12:04:17'),
+(8, 'sandeep reddy naini', 'nainisandeepreddy@gmail.com', '3543453453', '108', 'hyderabad', '67', '2024-02-28', '08:00 AM - 09:00 AM', 'female', 'hex-HY-1707204982', 2, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 25, 'Card', NULL, NULL, '2024-02-06 13:06:24', '2024-02-06 13:06:24'),
+(9, 'sandeep reddy naini', 'nainisandeepreddy@gmail.com', '345345', '108', 'hyderabad', '341', '2024-02-16', '07:00 AM - 08:00 AM', 'male', 'hex-HY-1707205028', 2, NULL, NULL, NULL, 64, 'sample collection pending', NULL, NULL, 25, 'Cash', NULL, NULL, '2024-02-06 08:57:03', '2024-02-06 14:27:03'),
+(10, 'Supinder singh', 'aroranaina94@gmail.com', '07838256683', 'Gurha Morh NH1, Jammu', 'Jammu', '28', '2024-02-06', '12:00 PM - 01:00 PM', 'male', 'hex-HY-1707205173', 2, NULL, NULL, NULL, 63, 'Ready for collection', 2, 4, 25, 'Cash', NULL, NULL, '2024-02-10 04:45:59', '2024-02-10 10:15:59'),
+(11, 'Pushpinder Singh', 'rg@gmail.com', '7889895212', 'Gurha Morh NH1, Jammu', 'Jammu', '21', '2024-02-06', '02:00 PM - 03:00 PM', 'male', 'hex-HY-1707209024', 2, NULL, NULL, NULL, 64, 'Ready for collection', 2, 4, 25, 'Cash', NULL, NULL, '2024-02-10 04:45:59', '2024-02-10 10:15:59'),
+(12, 'Pankaj Gupta', 'pankaj970@gmail.com', '9796080918', '143', 'Jammu', '32', '2024-02-06', '03:00 PM - 04:00 PM', 'male', 'hex-HY-1707212689', 2, NULL, NULL, NULL, 66, 'recived', NULL, NULL, 65, 'Card', NULL, NULL, '2024-02-06 09:59:00', '2024-02-06 15:29:00'),
+(13, 'Pankaj Gupta', 'pankaj970@gmail.com', '9796080918', 'Gurha Morh NH1, Jammu', 'Jammu', '32', '2024-02-07', '10:00 AM - 11:00 AM', 'male', 'hex-HY-1707215476', 1, NULL, NULL, NULL, 66, 'sample collected', NULL, NULL, 65, 'UPI', NULL, NULL, '2024-02-06 10:33:46', '2024-02-06 16:03:46'),
+(14, 'RAJAT', 'admin@hexamed.com', '7822125461', 'Preet Nagar', 'Jammu', '22', '2024-02-07', '11:00 AM - 12:00 PM', 'male', 'hex-HY-1707281852', 2, NULL, NULL, NULL, 64, 'Ready for collection', 2, 4, 25, 'Cash', NULL, NULL, '2024-02-10 04:45:59', '2024-02-10 10:15:59'),
+(15, 'Mustfa', 'mustfa@gmail.com', '7845457878', 'Gurha Morh NH1, Jammu', 'Jammu', '28', '2024-02-08', '11:00 AM - 12:00 PM', 'male', 'hex-HY-1707366615', 2, NULL, NULL, NULL, 68, 'collection pending', 1, NULL, 67, 'Cash', NULL, NULL, '2024-02-08 04:31:54', '2024-02-08 10:01:54'),
+(16, 'Rameshwer', 'ram@gmail.com', '7864212456', 'Preet Nagar', 'Jammu', '21', '2024-02-09', '01:00 PM - 02:00 PM', 'male', 'hex-HY-1707460937', 1, NULL, NULL, NULL, 68, 'sample collection pending', NULL, NULL, 67, 'Cash', NULL, NULL, '2024-02-09 06:42:31', '2024-02-09 12:12:31'),
+(17, 'chandu', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '12121211222', '2024-02-22', '01:00 PM - 02:00 PM', 'male', 'hex-HY-1707538230', 1, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 25, 'Cash', NULL, NULL, '2024-02-10 09:40:35', '2024-02-10 09:40:35'),
+(18, 'chanduakula naidu', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '22', '2024-02-16', '06:00 AM - 07:00 AM', 'male', 'hex-HY-1707538701', 1, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 25, 'Cash', NULL, NULL, '2024-02-10 09:48:23', '2024-02-10 09:48:23'),
+(19, 'akula naidu', 'akula@gmail.com', '8574523698', '3-165', 'rajamundry', '26', '2024-02-11', '08:00 AM - 09:00 AM', 'male', 'hex-HY-1707539106', 1, NULL, NULL, NULL, 69, 'completed', 2, 4, 25, 'Cash', NULL, 1, '2024-02-10 04:55:26', '2024-02-10 10:25:26'),
+(20, 'Pawan', 'pawan@gmail.com', '7842123435', 'Gurha Morh NH1, Jammu', 'Jammu', '29', '2024-02-11', '09:00 AM - 10:00 AM', 'male', 'hex-HY-1707543180', 1, NULL, NULL, NULL, 71, 'completed', 1, NULL, 70, 'Cash', NULL, 1, '2024-02-10 05:45:29', '2024-02-10 11:15:29'),
+(21, 'Sunaina Arora', 'aroranaina94@gmail.com', '07838256683', 'Gurha Morh NH1, Jammu', 'Jammu', '27', '2024-02-11', '10:00 AM - 11:00 AM', 'female', 'hex-HY-1707543410', 1, NULL, NULL, NULL, 69, 'sample collection pending', NULL, NULL, 70, 'Cash', NULL, NULL, '2024-02-10 05:37:59', '2024-02-10 11:07:59'),
+(22, 'Mr. Ram', 'ramu@gmail.com', '7654245668', '143', 'Jammu', '25', '2024-02-11', '10:00 AM - 11:00 AM', 'male', 'hex-HY-1707551206', 1, NULL, NULL, NULL, 71, 'sample collection pending', NULL, NULL, 70, 'Cash', NULL, NULL, '2024-02-10 07:46:54', '2024-02-10 13:16:54'),
+(23, 'Mehek', 'mehek@gmail.com', '7544564545', 'Gurha Morh NH1, Jammu', 'Jammu', '52', '2024-02-11', '10:00 AM - 11:00 AM', 'female', 'hex-HY-1707551453', 1, NULL, NULL, NULL, 72, 'completed', 1, NULL, 70, 'Card', NULL, 1, '2024-02-10 07:53:40', '2024-02-10 13:23:40'),
+(24, 'Priyabrat Singh', 'priyabrat_singh@gmail.com', '6205823169', 'Taluka Bahu, Channi Rama Jammu', 'Jammu', '37', '2024-02-12', '05:00 PM - 06:00 PM', 'male', 'hex-HY-1707725792', 1, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 73, 'UPI', NULL, NULL, '2024-02-12 13:49:53', '2024-02-12 13:49:53'),
+(25, 'Ishaan Mahajan', 'ishaan@gmail.com', '7812134543', '234- ram pura channi', 'Jammu', '30', '2024-02-14', '01:00 PM - 02:00 PM', 'male', 'hex-HY-1707898775', 2, NULL, NULL, NULL, NULL, 'Ready for collection', 2, 1, 75, 'Cash', NULL, NULL, '2024-02-21 07:41:17', '2024-02-21 13:11:17'),
+(26, 'venkat sai', 'chandu@gmail.com', '08885848123', '3-165', 'rajamundry', '34', '2024-02-15', '10:00 AM - 11:00 AM', 'male', 'hex-HY-1707926319', 1, NULL, NULL, NULL, 74, 'sample collection pending', NULL, NULL, 70, 'Card', NULL, NULL, '2024-02-14 15:59:56', '2024-02-14 21:29:56'),
+(27, 'Raman Gupta', 'raman.gupta@gmail.com', '1234567899', 'House No: 412, Sainik Colony, Chauhaddi Road, SBI Road', 'Jammu', '32', '2024-02-15', '10:00 AM - 11:00 AM', 'male', 'hex-HY-1707930585', 1, NULL, NULL, NULL, NULL, 'sample collected', NULL, NULL, 73, 'UPI', NULL, NULL, '2024-02-14 17:13:11', '2024-02-14 22:43:11'),
+(28, 'Pawan', 'Pawan@gmail.com', '07838256683', 'Gurha Morh NH1, Jammu', 'Jammu', '27', '2024-02-15', '11:00 AM - 12:00 PM', 'male', 'hex-HY-1707972185', 2, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 70, 'Card', NULL, NULL, '2024-02-15 10:14:12', '2024-02-15 10:14:12'),
+(29, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '12', '2024-02-17', '10:00 AM - 11:00 AM', 'female', 'hex-HY-1708057056', 1, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 70, 'Card', NULL, NULL, '2024-02-16 09:47:52', '2024-02-16 09:47:52'),
+(30, 'Pawan', 'pawan@gmail.com', '07838256683', 'Gurha Morh NH1, Jammu', 'Jammu', '21', '2024-02-16', '12:00 PM - 01:00 PM', 'male', 'hex-HY-1708059075', 2, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 70, 'Cash', NULL, NULL, '2024-02-16 10:21:35', '2024-02-16 10:21:35'),
+(31, 'Pawan', 'Pawan@gmail.com', '07838256683', 'Gurha Morh NH1, Jammu', 'Jammu', '27', '2024-02-17', '12:00 PM - 01:00 PM', 'male', 'hex-HY-1708143862', 2, NULL, NULL, NULL, NULL, 'collection pending', 1, NULL, 70, 'Cash', NULL, NULL, '2024-02-17 04:26:45', '2024-02-17 09:56:45'),
+(32, 'Pawan', 'Pawan4@gmail.com', '7864231235', 'Gurha Morh NH1, Jammu', 'Jammu', '21', '2024-02-18', '01:00 PM - 02:00 PM', 'male', 'hex-HY-1708226953', 2, NULL, NULL, NULL, NULL, 'collection pending', 1, NULL, 70, 'Cash', NULL, NULL, '2024-02-21 12:17:13', '2024-02-21 17:47:13'),
+(33, 'RAJAT', 'rajat@gmail.com', '7422565235', 'Preet Nagar', 'Jammu', '21', '2024-02-20', '01:00 PM - 02:00 PM', 'male', 'hex-HY-1708413157', 2, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 25, 'Card', NULL, NULL, '2024-02-20 13:02:04', '2024-02-20 13:02:04'),
+(34, 'Min huntz Testing', 'puttanagarjuna116@gmail.com', '01234567890', 'Hhhd', 'Hshhs', '44', '2024-02-23', '08:00 AM - 09:00 AM', 'male', 'hex-HY-1708493095', 2, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 25, 'Cash', NULL, NULL, '2024-02-21 10:55:22', '2024-02-21 10:55:22'),
+(35, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '12', '2024-02-21', '09:00 AM - 10:00 AM', 'male', 'hex-HY-1708500423', 1, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 70, 'UPI', NULL, NULL, '2024-02-21 12:57:15', '2024-02-21 12:57:15'),
+(36, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '21', '2024-02-29', '10:00 AM - 11:00 AM', 'male', 'hex-HY-1708500904', 1, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 70, 'UPI', NULL, NULL, '2024-02-21 13:05:54', '2024-02-21 13:05:54'),
+(37, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '45', '2024-03-01', '09:00 AM - 10:00 AM', 'male', 'hex-HY-1708501052', 1, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 70, 'Cash', NULL, NULL, '2024-02-21 13:07:55', '2024-02-21 13:07:55'),
+(38, 'chandu', 'chandu@gmail.com', '08885848123', '3-165', 'rajamundry', '25', '2024-02-22', '09:00 AM - 10:00 AM', 'male', 'hex-HY-1708502941', 1, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 70, 'Cash', NULL, NULL, '2024-02-21 13:41:24', '2024-02-21 13:41:24'),
+(39, 'nag', 'chandu@gmail.com', '08885848123', '0999qrwr', 'rajamundry', '12', '2024-02-21', '09:00 AM - 10:00 AM', 'male', 'hex-HY-1708503157', 1, NULL, NULL, NULL, NULL, 'sample collection pending', NULL, NULL, 70, 'Card', NULL, NULL, '2024-02-21 13:42:45', '2024-02-21 13:42:45'),
+(40, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '12', '2024-03-01', '07:00 AM - 08:00 AM', 'male', 'hex-HY-1708504373', 1, NULL, NULL, '1212', NULL, 'sample collection pending', NULL, NULL, 70, 'Card', NULL, NULL, '2024-02-21 14:02:56', '2024-02-21 14:02:56'),
+(41, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '12', '2024-02-22', '09:00 AM - 10:00 AM', 'male', 'hex-HY-1708509276', 1, NULL, NULL, 'chandu akula', NULL, 'sample collected', NULL, NULL, 70, 'Card', NULL, NULL, '2024-02-21 12:43:16', '2024-02-21 18:13:16'),
+(42, 'pallavi heer', 'pallavi@gmail.com', '4254564654', 'bakshi nagar', 'Jammu', '24', '2024-02-21', '03:00 PM - 04:00 PM', 'female', 'hex-HY-1708515445', 2, NULL, NULL, 'Dr Hardeep', NULL, 'collection pending', 1, NULL, 70, 'UPI', NULL, NULL, '2024-02-21 12:17:13', '2024-02-21 17:47:13'),
+(43, 'Chandu akula', 'chanduakula111@gmail.com', '8885825813', 'sr nagar', 'HYDERABAD', '22', '2024-02-23', '11:00 AM - 12:00 PM', 'male', 'hex-HY-1708521593', 1, NULL, NULL, 'Chandu akula', NULL, 'sample collection pending', NULL, NULL, 70, 'Card', NULL, NULL, '2024-02-21 18:50:16', '2024-02-21 18:50:16'),
+(44, 'Mr. Baljeet', 'baljeetsingh@gmail.com', '7541345346', 'preet nagar', 'Jammu', '35', '2024-02-23', '09:00 AM - 10:00 AM', 'male', 'hex-HY-1708589245', 1, NULL, NULL, 'Dr. Hardeep Singh', 77, 'sample collected', NULL, NULL, 76, 'Cash', NULL, NULL, '2024-02-22 11:04:53', '2024-02-22 16:34:53'),
+(45, 'Vicky', 'vicky@gmail.com', '7867634124', 'preet Nagar', 'Jammu', '21', '2024-02-23', '08:00 AM - 09:00 AM', 'male', 'hex-HY-1708590858', 1, NULL, NULL, 'Dr Viney', 77, 'sample collected', NULL, NULL, 76, 'Card', NULL, NULL, '2024-02-22 08:38:33', '2024-02-22 14:08:33'),
+(46, 'Pawan', 'vicky@gmail.com', '07867634124', 'preet Nagar', 'Jammu', '21', '2024-02-22', '03:00 PM - 04:00 PM', 'male', 'hex-HY-1708591321', 2, NULL, NULL, 'self', NULL, 'collection pending', 1, NULL, 76, 'Cash', NULL, NULL, '2024-02-22 08:43:42', '2024-02-22 14:13:42'),
+(47, 'Pawan', 'vicky@gmail.com', '07867634124', 'preet Nagar', 'Jammu', '21', '2024-02-22', '12:00 PM - 01:00 PM', 'male', 'hex-HY-1708599512', 2, NULL, NULL, 'self', NULL, 'collection pending', 1, NULL, 76, 'Card', NULL, NULL, '2024-02-22 11:14:13', '2024-02-22 16:44:13'),
+(48, 'Vicky', 'vicky@gmail.com', '07867634124', 'preet Nagar', 'Jammu', '21', '2024-02-23', '11:00 AM - 12:00 PM', 'male', 'hex-HY-1708599980', 1, NULL, NULL, 'self', 77, 'sample collected', NULL, NULL, 76, 'Card', NULL, NULL, '2024-02-23 08:07:38', '2024-02-23 13:37:38'),
+(49, 'viren', 'v@gmail.com', '1234657878', 'ram nagar', 'jammu', '21', '2024-02-24', '08:00 AM - 09:00 AM', 'male', 'hex-HY-1708674526', 1, NULL, NULL, 'Dr Hardeep Singh', 79, 'sample collection pending', NULL, NULL, 76, 'UPI', NULL, NULL, '2024-02-23 07:50:23', '2024-02-23 13:20:23'),
+(50, 'Neel Kamal Pathak', 'neel@gmail.com', '7845453456', 'preet Nagar', 'Jammu', '22', '2024-02-24', '12:00 PM - 01:00 PM', 'male', 'hex-HY-1708674927', 1, NULL, NULL, 'Self', NULL, 'sample collection pending', NULL, NULL, 76, 'Cash', NULL, NULL, '2024-02-23 13:27:16', '2024-02-23 13:27:16'),
+(51, 'Vikas Gupta', 'vikasgupta@gmail.com', '7841231534', 'Preet Nagar', 'Jammu', '29', '2024-02-24', '07:00 AM - 08:00 AM', 'male', 'hex-HY-1708675160', 1, NULL, NULL, 'Dr Manoj gupta', 78, 'sample collection pending', NULL, NULL, 76, 'Card', NULL, NULL, '2024-02-23 07:59:41', '2024-02-23 13:29:41'),
+(52, 'Vikas Gupta', 'vikasgupta@gmail.com', '7841231534', 'ram nagar', 'Jammu', '29', '2024-02-23', '02:00 PM - 03:00 PM', 'male', 'hex-HY-1708675423', 1, NULL, NULL, 'Dr Manoj gupta', 77, 'sample collected', NULL, NULL, 76, 'Card', NULL, NULL, '2024-02-23 08:08:14', '2024-02-23 13:38:14'),
+(53, 'Mr. Baljeet', 'baljeetsingh@gmail.com', '07541345346', 'preet nagar', 'Jammu', '22', '2024-02-23', '02:00 PM - 03:00 PM', 'male', 'hex-HY-1708675501', 1, NULL, NULL, 'self', NULL, 'sample collection pending', NULL, NULL, 76, 'Card', NULL, NULL, '2024-02-23 13:35:07', '2024-02-23 13:35:07'),
+(54, 'Pallavi Heer', 'p@gmail.com', '7812458789', 'preet nagar', 'Jammu', '20', '2024-02-23', '03:00 PM - 04:00 PM', 'female', 'hex-HY-1708675869', 1, NULL, NULL, 'self', 77, 'sample collected', NULL, NULL, 76, 'Card', NULL, NULL, '2024-02-23 08:13:16', '2024-02-23 13:43:16'),
+(55, 'Himanshu', 'h@gmail.com', '1245877856', 'ram nagar', 'jammu', '21', '2024-02-23', '01:00 PM - 02:00 PM', 'male', 'hex-HY-1708676181', 1, NULL, NULL, 'Self', 77, 'sample collected', NULL, NULL, 76, 'Card', NULL, NULL, '2024-02-23 08:16:55', '2024-02-23 13:46:55'),
+(56, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '56', '2024-02-27', '12:00 PM - 01:00 PM', 'male', 'hex-HY-1708802281', 1, NULL, NULL, 'chandu akula', NULL, 'sample collection pending', NULL, NULL, 70, 'UPI', NULL, NULL, '2024-02-25 00:48:41', '2024-02-25 00:48:41'),
+(57, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '52', '2024-02-28', '11:00 AM - 12:00 PM', 'male', 'hex-HY-1708802366', 1, NULL, NULL, 'chandu akula', NULL, 'sample collection pending', NULL, NULL, 70, 'UPI', NULL, NULL, '2024-02-25 00:49:56', '2024-02-25 00:49:56'),
+(58, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '52', '2024-02-29', '10:00 AM - 11:00 AM', 'male', 'hex-HY-1708804455', 1, NULL, NULL, 'chandu akula', NULL, 'sample collection pending', NULL, NULL, 70, 'Cash', NULL, NULL, '2024-02-25 01:24:38', '2024-02-25 01:24:38'),
+(59, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '52', '2024-02-29', '10:00 AM - 11:00 AM', 'male', 'hex-HY-1708804616', 1, NULL, NULL, 'chandu akula', NULL, 'sample collection pending', NULL, NULL, 70, 'Cash', NULL, NULL, '2024-02-25 01:27:17', '2024-02-25 01:27:17'),
+(60, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '52', '2024-02-29', '10:00 AM - 11:00 AM', 'male', 'hex-HY-1708804831', 1, NULL, NULL, 'chandu akula', NULL, 'sample collection pending', NULL, NULL, 70, 'Cash', NULL, NULL, '2024-02-25 01:31:00', '2024-02-25 01:31:00'),
+(61, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '52', '2024-02-29', '10:00 AM - 11:00 AM', 'male', 'hex-HY-1708804921', 1, NULL, NULL, 'chandu akula', NULL, 'sample collection pending', NULL, NULL, 70, 'Cash', NULL, NULL, '2024-02-25 01:32:25', '2024-02-25 01:32:25'),
+(62, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '45', '2024-02-29', '11:00 AM - 12:00 PM', 'male', 'hex-HY-1708804986', 1, NULL, NULL, '', NULL, 'sample collection pending', NULL, NULL, 70, 'Cash', NULL, NULL, '2024-02-25 01:33:18', '2024-02-25 01:33:18'),
+(63, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '12', '2024-03-06', '08:00 AM - 09:00 AM', 'male', 'hex-HY-1708840052', 1, NULL, NULL, 'sdssd', NULL, 'sample collection pending', NULL, NULL, 70, 'Card', NULL, NULL, '2024-02-25 11:17:43', '2024-02-25 11:17:43'),
+(64, 'nfmgfghfhg', 'chandu@gmail.com', '08885848123', 'test asas', 'rajamundry', '12', '2024-03-06', '08:00 AM - 09:00 AM', 'male', 'hex-HY-1708840052', 1, NULL, NULL, 'sdssd', NULL, 'sample collection pending', NULL, NULL, 70, 'Card', NULL, NULL, '2024-02-25 11:18:45', '2024-02-25 11:18:45'),
+(65, 'venkat sai', 'venkat@gmail.com', '4785478965', 'srt 446', 'ravulapalem', '35', '2024-02-28', '08:00 AM - 09:00 AM', 'male', 'hex-HY-1708840884', 1, NULL, NULL, 'chandu akula', NULL, 'sample collection pending', NULL, NULL, 70, 'Cash', NULL, NULL, '2024-02-25 11:31:28', '2024-02-25 11:31:28');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `bokked_tests`
+--
+ALTER TABLE `bokked_tests`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bokked_tests`
+--
+ALTER TABLE `bokked_tests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

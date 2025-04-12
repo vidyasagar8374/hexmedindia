@@ -38,3 +38,5 @@ yarn-error.log
 
 # Optional
 /public/document/
+
+public/document*

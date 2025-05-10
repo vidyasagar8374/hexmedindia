@@ -15,4 +15,6 @@ class TestBokkingDetail extends Model
     public function pc(){
         return $this->hasOne(Package::class, 'id', 'test_id');
     }
+
+   
 }

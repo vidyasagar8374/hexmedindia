@@ -235,7 +235,13 @@ class BoysManageController extends Controller
          $admin = \Auth::user()->role;
          $userid = \Auth::user()->id;
          if($admin == 1){
-           $transactiondetails = transactiondetails::with(['franchisedetails', 'testdetails'])->orderBy('id', 'desc')->paginate(50);
+           $transactiondetails = transactiondetails::with(['franchisedetails', 'testdetails','franchiseowners'])->orderBy('id', 'desc')->paginate(50);
+        //    dd($transactiondetails);
+        // echo "<pre>";
+        // print_r($transactiondetails);
+        // exit;
+
+        
          }else{
              $transactiondetails = transactiondetails::with(['testdetails'])->where('user_id',$userid)->orderBy('id', 'desc')->paginate(50);
          }

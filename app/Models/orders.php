@@ -15,5 +15,8 @@ class orders extends Model
     public function userdata(){
         return $this->hasMany(User::class, 'id', 'user_id');
     }
+    public function franchise(){
+        return $this->hasOne(FranchiseOwnerDetails::class, 'franchise_id','user_id');
+    }
 
 }

@@ -36,6 +36,7 @@
                   <th scope="col">Id</th>
                   <th scope="col">Email</th>
                   <th scope="col">Requested</th>
+                  <th scope="col">Franchise Name</th>
                
                   <th scope="col">view more</th>
                 </tr>
@@ -46,6 +47,7 @@
                   <th scope="row">{{$row->id}}</th>
                   <td>{{$row->email}}</td>
                   <td>{{$row->requestdetails ? 'Requested' : 'NA' }}</td>
+                  <td>{{$row->requestdetails->frachisedCollections->tradename ?? '' }}</td>
                 
                   <td><a href="{{url('/admin/approverequests/' . encrypt($row->id))}}" class="btn btn-primary btn-sm">view More</a></td>
                 </tr>

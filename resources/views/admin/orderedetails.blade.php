@@ -33,7 +33,7 @@
                 <tr>
                   <th scope="col">Id</th>
                   <th scope="col">User Name</th>
-                  <th scope="col">Email</th>
+                  <th scope="col">Franchise Name</th>
                   <th scope="col">Mobile</th>
                   <th scope="col">Status</th>
                   <th scope="col">Products</th>
@@ -48,7 +48,7 @@
                 <tr>
                   <th scope="row">{{$order->uuid}}</th>
                   <td>{{$order->userdata[0]->name}}</td>
-                  <td>{{$order->userdata[0]->email}}</td>
+                  <td>{{$order->franchise->tradename }}</td>
                   <td>{{$order->userdata[0]->mobile}}</td>
                                     <td>{{$order->status}}</td>
                   <td>{{$order->products->count()}}</td>

@@ -41,7 +41,14 @@
         
                         <div class="card-body">
                           <h5 class="card-title">Booking History <span>| Total</span></h5>
-
+                          <h3>
+                          <a href="{{ route('bookinghistory.export') }}"> 
+                            <div class="exprot-data d-flex justify-content-end align item-center">
+                            <i class="bi bi-file-earmark-arrow-down-fill"></i></h3>
+                          </div></a>
+                          </h3>
+                         
+                           
                           <div class="row">
                               
 
@@ -84,6 +91,9 @@
                                 <th scope="col">#Uid</th>
                                 <th scope="col">Customer</th>
                                 <th scope="col">Test</th>
+                                @if(\Auth::user()->role == 1)
+                                <th scope="col">Franchise Name</th>
+                                @endif
                                 <th scope="col">Package</th>
 
                                 <!-- <th scope="col">Boy</th> -->
@@ -105,7 +115,11 @@
                                   {{$info->name->name}},
                                  @endforeach
                                 </a></td>
-
+                                @if(\Auth::user()->role == 1)
+                                @foreach($row->frachisedetails as $franchise)
+                                <td>{{ $franchise->tradename }}</td>
+                                @endforeach
+                                @endif
                                 <td><a href="#" class="text-primary">
                                  @foreach($row->packagedetails as $info)
                                     {{$info->pc->package}},

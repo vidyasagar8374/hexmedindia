@@ -57,4 +57,7 @@ class User extends Authenticatable
     public function tolietimages(){
          return $this->hasMany(ToiletImages::class, 'franchise_id', 'id');
     }
+    public function franchisedCollections(){
+        return $this->hasMany(FranchiseOwnerDetails::class, 'franchise_id', 'id');
+    }
 }

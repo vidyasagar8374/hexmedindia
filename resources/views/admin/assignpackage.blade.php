@@ -19,9 +19,16 @@
             
           <div class="card">
             <div class="card-body">
-
+             <!-- download icon-->
+             <h3>
+                          <a href="{{ route('exportassignpackage') }}"> 
+                            <div class="exprot-data d-flex justify-content-end align item-center">
+                            <i class="bi bi-file-earmark-arrow-down-fill"></i></h3>
+                          </div></a>
+                          </h3>
+              <!-- download icon-->
             <div class="row align-items-center">
-
+             
         <div class="col-lg-9 col-md-9 justify-content-around">
         <h5 class="card-title">Packages List</h5>
         </div>
@@ -41,6 +48,7 @@
 
                     <th scope="col">Price</th>
                     <th scope="col">Franchise Price</th>
+                    <th scope="col">Created & Updated</th>
 
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
@@ -59,14 +67,10 @@
                       @endif
                     </th>
                     <th scope="row">{{$r->price}}</th>
-
                     <td>{{$r->cut_price}}</td>
+                    <th scope="row">{{$r->createuser->name ?? ''}}</th>
                     <td>{{$r->is_active}}</td>
-                    <td><a href="{{url('admin/editpackageinfo') . '/' . encrypt($r->id)}}"><button class="btn btn-primary">Edit</button></a></td>
-
-
-      
-                    
+                    <td><a href="{{url('admin/editpackageinfo') . '/' . encrypt($r->id)}}"><button class="btn btn-primary">Edit</button></a></td> 
                   </tr>
                   @endforeach
                   

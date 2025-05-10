@@ -86,7 +86,7 @@
     {
       var package = $('#package').val();
       $.ajax({
-        url: '/public/admin/deletetest',
+        url: '/admin/deletetest',
         type: "post",
         data : {
           package : package,

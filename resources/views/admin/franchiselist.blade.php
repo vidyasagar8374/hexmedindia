@@ -31,6 +31,7 @@
                 <tr>
                   <th scope="col">Id</th>
                   <th scope="col">Name</th>
+                  <th scope="col">Frachise Name</th>
                   <th scope="col">Mobile Number</th>
                   <th scope="col">city</th>
                   <th scope="col">Type</th>
@@ -44,6 +45,7 @@
                 <tr>
                   <th scope="row">{{$row->id}}</th>
                   <td>{{$row->name}}</td>
+                  <td>{{ $row->franchisedetails->tradename ?? '' }}</td>
                   <td>{{$row->mobile}}</td>
                   <td>{{$row->franchisedetails->city ?? ''}}</td>
                   <td>{{$row->sis == 1 ? 'SIS' :  'Franchise'}}</td>

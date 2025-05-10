@@ -8,12 +8,16 @@ use Illuminate\Http\Request;
 use App\Models\Test;
 use App\Models\Package;
 use App\Models\PackageDetail;
-
+use App\Exports\TestList;
+use Excel;
 class TestCreateController extends Controller
 {
     public function managetest(){
         $tests = Test::latest('id')->get();
         return view('admin.managetest', compact('tests'));
+    }
+    public function exportest(){
+        return Excel::download(new TestList,'managetest.xlsx');
     }
 
     public function testedit(){
@@ -43,6 +47,7 @@ class TestCreateController extends Controller
     }
     public function testupdate(Request $request){
         try{
+            
             $updateRecord = Test::where('id', decrypt($request->id))->update([
                 'name' => str_replace(',', '',  $request->name),
                 'price' => $request->price,

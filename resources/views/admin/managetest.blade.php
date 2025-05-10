@@ -22,7 +22,15 @@
     <div class="card">
       <div class="card-body">
         <div class="row align-items-center">
-
+        <div class="card-body">
+             <!-- download icon-->
+             <h3 class="pt-3">
+                          <a href="{{ route('exportest') }}"> 
+                            <div class="exprot-data d-flex justify-content-end align item-center">
+                            <i class="bi bi-file-earmark-arrow-down-fill"></i></h3>
+                          </div></a>
+                          </h3>
+              <!-- download icon-->
         <div class="col-lg-9 col-md-9 justify-content-around">
             <h5 class="card-title">Create Test // Edit - Delete</h5>
         </div>

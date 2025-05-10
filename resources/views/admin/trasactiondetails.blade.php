@@ -6,12 +6,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Coupons</h1>
+      <h1>Transaction Details</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Approve</li>
-          <li class="breadcrumb-item active">Coupons</li>
+          <li class="breadcrumb-item">transactions</li>
+          <li class="breadcrumb-item active">lists</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -50,7 +50,7 @@
             </table>
             <!-- E  nd Table with hoverable rows -->
             <div class="ajax-load-gif text-center" style="display:none">
-                    <p><img src="{{ asset('assets/img/loadinggif.gif') }}"></p>
+                    <p><img src="{{ asset('assets/img/amalie-steiness.gif') }}"></p>
                 </div>
             
             </div>  

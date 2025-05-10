@@ -12,4 +12,10 @@ class addwallet extends Model
     public function boydetails(){
         return $this->hasOne(User::class, 'id', 'franchiseid');
     }
+    public function franchisedeatails(){
+        return $this->hasMany(FranchiseOwnerDetails::class, 'franchise_id', 'franchiseid');
+    }
+    public function created_users(){
+        return $this->hasOne(User::class,'id','created_user');
+    }
 }

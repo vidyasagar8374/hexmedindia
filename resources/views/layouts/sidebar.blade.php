@@ -451,7 +451,7 @@ $cartcount = \DB::table('cart')->where('user_id', \Auth::user()->id)->count();
     </a>
   </li>
     @endif
-      <li class="nav-item">
+    <li class="nav-item">
     <a class="nav-link collapsed"  href="{{route('transactiondetails')}}">
     <i class="ri-24-hours-fill"></i><span>list of transactions</span></i>
     </a>

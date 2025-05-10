@@ -59,6 +59,7 @@ Route::group(['prefix' => 'franchise'], function () {
     Route::post('/transactionsuccess', [StripePaymentController::class, 'transactionsuccess'])->name('transactionsuccess');
     Route::get('/transactionfail', [franchiseaddwallet::class, 'transactionfail'])->name('transactionfail');
     Route::get('/franchiseprofile', [profile::class, 'franchiseprofile'])->name('franchiseprofile');
+    Route::get('/updatepofilepasswd', [profile::class, 'updatepofilepasswd'])->name('updatepofilepasswd');
     Route::get('/ordertracking', [ordertracking::class, 'customerordertracking'])->name('ordertracking');
     Route::get('/franchisewallet', [FranchiseControlController::class, 'franchisewallet'])->name('franchisewallet'); 
     
@@ -67,6 +68,7 @@ Route::group(['prefix' => 'franchise'], function () {
     Route::get('/booktest', [TestBokkingController::class, 'booktest'])->name('booktest');  
     Route::post('/booknewtest', [TestBokkingController::class, 'booknewtest'])->name('booknewtest');  
     Route::any('/bookinghistory', [TestBokkingController::class, 'bookinghistory'])->name('bookinghistory');
+    Route::get('/export-history', [TestBokkingController::class, 'bookinghistoryExpory'])->name('bookinghistory.export');
     
     // middleawareonly for based on auth role
  Route::get('/bill', [TestBokkingController::class, 'bill'])->name('bill');  
@@ -122,11 +124,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/support', [FranchiseControlController::class, 'support'])->name('admin.support');
     Route::get('/sisreport', [FranchiseControlController::class, 'sisreport'])->name('admin.sisreport');
     Route::get('/packagelist', [FranchiseControlController::class, 'packagelist'])->name('packagelist');
+    Route::get('/exportpackagelist', [FranchiseControlController::class, 'exportpackagelist'])->name('exportpackagelist');
     Route::get('/createpackage', [FranchiseControlController::class, 'createpackage'])->name('createpackage');
     Route::get('/editpackagelist/{id}', [FranchiseControlController::class, 'editpackagelist'])->name('editpackagelist');
     Route::post('/updatepackage', [FranchiseControlController::class, 'updatepackage'])->name('updatepackage');
     Route::post('/createnewpackage', [FranchiseControlController::class, 'createnewpackage'])->name('createnewpackage');
     Route::get('/assignpackage', [FranchiseControlController::class, 'assignpackage'])->name('assignpackage');
+    Route::get('/exportassignpackage', [FranchiseControlController::class, 'exportassignpackage'])->name('exportassignpackage');
     Route::get('/assigntesttopackage', [FranchiseControlController::class, 'assigntesttopackage'])->name('assigntesttopackage');
     Route::post('/assignpackagetotest', [FranchiseControlController::class, 'assignpackagetotest'])->name('assignpackagetotest');
 
@@ -139,6 +143,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/approvefranchise', [FranchiseControlController::class, 'approvefranchise'])->name('approvefranchise');
     Route::get('/listoffranchise', [FranchiseControlController::class, 'listoffranchise'])->name('listoffranchise'); 
     Route::get('/managetest', [TestCreateController::class, 'managetest'])->name('managetest');
+    Route::get('/exportest', [TestCreateController::class, 'exportest'])->name('exportest');
+
     Route::get('/testedit', [TestCreateController::class, 'testedit'])->name('testedit');
     Route::get('/newtestedit', [TestCreateController::class, 'newtestedit'])->name('newtestedit');
     Route::post('/createnewtest', [TestCreateController::class, 'createnewtest'])->name('createnewtest');

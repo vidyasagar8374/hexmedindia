@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use App\Models\transactiondetails;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -17,7 +18,13 @@ class TransactionListExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        if(\Auth::user()->role == 1){
+
+        $authuser = Auth::user();
+        $whereClause = '';
+        if ($authuser->role != 1) {     
+            $whereClause = "where trxt.user_id = " . intval($authuser->id);
+        }
+    
 
         // $transactiondetails = transactiondetails::select(
         //     DB::raw('ROW_NUMBER() OVER () as serial_no'), // Using ROW_NUMBER() OVER () for serial number
@@ -99,19 +106,34 @@ class TransactionListExport implements FromCollection, WithHeadings
     
     
     
-    $transactiondetails = DB::table('transactiondetails')
-    ->join('users', 'users.id', '=', 'transactiondetails.user_id')
-    ->select(
-        'transactiondetails.user_id',
-        'transactiondetails.text',
-        'transactiondetails.amount',
-        'transactiondetails.is_positive',
-        'transactiondetails.payment_ref',
-        'users.email',
-        DB::raw('DATE_FORMAT(transactiondetails.created_at, "%d-%m-%Y %H:%i") as formatted_created_at') // Format Date & Time
-    )
-    ->latest('transactiondetails.id')
-    ->get();
+$transactiondetails = DB::select("
+    SELECT
+        frowner.tradename,
+        trxt.amount,
+        trxt.text,
+        trxt.is_positive,
+        trxt.payment_ref,
+        usr.email,
+        GROUP_CONCAT(bkt.booking_id SEPARATOR ', ') AS booking_ids,
+        DATE_FORMAT(trxt.created_at, '%d-%m-%Y %H:%i') AS formatted_created_at
+    FROM transactiondetails AS trxt
+    LEFT JOIN users AS usr ON usr.id = trxt.user_id
+    LEFT JOIN bokked_tests AS bkt ON bkt.payment_ref = trxt.payment_ref
+    LEFT JOIN franchise_owner_details AS frowner ON frowner.franchise_id = trxt.user_id
+    $whereClause
+    GROUP BY
+        frowner.tradename,
+        trxt.id,
+        trxt.user_id,
+        trxt.text,
+        trxt.amount,
+        trxt.is_positive,
+        trxt.payment_ref,
+        usr.email,
+        trxt.created_at
+    ORDER BY trxt.id DESC
+");
+
 
 //  $transactiondetails = transactiondetails::with(['franchisedetails', 'testdetails'])->orderBy('id', 'desc')->get();
 //  foreach($shares as $x => $details){
@@ -119,20 +141,23 @@ class TransactionListExport implements FromCollection, WithHeadings
 //  }
 //  dd($shares);
 
-        }
-        return $transactiondetails;
+return collect($transactiondetails)->map(function ($row) {
+    return (array) $row;
+});
+
     
     }
 
     public function headings(): array
     {
         return [
-            'Franchise Id',
-            'Details', // Change to 'User Name' to match the alias
+            'Franchise Name', // Change to 'User Name' to match the alias
             'Amount',
-            'Credit or Debit',
+            'Text',
+            'Credit Or Debit',
             'Payment Ref',
             'Email',
+            'Booking Ref',
             'Date'
         ];
     }

@@ -15,8 +15,9 @@
 
     <section class="section">
       <div class="row">
+     
         <div class="col-lg-12">
-            
+       
           <div class="card">
             <div class="card-body pt-3">
             @if ($errors->any())
@@ -34,15 +35,20 @@
             </div>
           @endif
 
-            <div class="row align-items-center">
-
+          <div class="row align-items-center">
+          @if(\Auth::user()->role == 1)
+          <div class="download-icon d-flex gap-3 justify-content-end">
+          <h3><a href="{{ route('exportpackagelist') }}"><i class="bi bi-file-earmark-arrow-down-fill"></i></h3></a></h3> 
+        </div>
+        @endif
         <div class="col-lg-9 col-md-9 justify-content-around">
         <h5 class="card-title">Packages List</h5>
         </div>
-        <div class="col-lg-3 col-md-3  justify-content-center">
+        <div class="col-lg-3 col-md-3 d-flext  gap-3">
             <button class="btn btn-primary btn-sm "><i class="ri-user-add-line">&nbsp;<a style="color:white;" href="{{route('createpackage')}}">Create Package</a></i></button>
+           
         </div>
-
+        
         </div>
                 
              
@@ -55,6 +61,8 @@
                     <th scope="col">Franchise Price</th>
 
                     <th scope="col">Active</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Updated</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -64,8 +72,9 @@
                     <th scope="row">{{$package->package}}</th>
                     <th scope="row">{{$package->price}}</th>
                     <th scope="row">{{$package->cut_price}}</th>
-
                     <td>{{$package->is_active == 'Active' ? 'Active' : 'In active'}}</td>
+                    <th scope="row">{{$package->createuser->name ?? ''}}</th>
+                    <th scope="row">{{$package->updateuser->name ?? ''}}</th>
                     <td><a href={{ url('admin/editpackagelist/' . $package->id) }}
 ><button type="button" class="btn btn-outline-primary btn-sm">Edit</button></a></td>
       

@@ -153,7 +153,12 @@ class samplecollectioncontroller extends Controller
         
     }
     public function collectionrequests(){
-        $franchise = User::with(['requestdetails'])->where('role', 2)->where('is_verified', 1)->get();
+        $franchise = User::with(['requestdetails.frachisedCollections'])->where('role', 2)->where('is_verified', 1)->get();
+        // dd($franchise);
+        // echo "<pre>";
+        // var_dump($franchise);
+        // exit;
+
         // $data = BookedTest::where('status', 'collection pending')->where('request_raised', 1)->get();
         return view('admin.collectionrequest', compact('franchise'));
     }
@@ -387,11 +392,12 @@ return redirect()->route('cartlist')->with('message', 'Something went wrong');
     
      public function orderedProduct(){
          if(\Auth::user()->role == 2){
-             $orders = orders::with('products','products.productsdetails','userdata')->where('user_id', \Auth::user()->id)->latest('id')->get();
+             $orders = orders::with('products','products.productsdetails','userdata','franchise')->where('user_id', \Auth::user()->id)->latest('id')->get();
          }elseif(\Auth::user()->role == 1){
-            $orders = orders::with('products','products.productsdetails','userdata')->latest('id')->get();
+            $orders = orders::with('products','products.productsdetails','userdata','franchise')->latest('id')->get();
         }
-
+        // dd($orders);
+    
         return view('admin/orderedetails',compact('orders'));
 
 
@@ -425,7 +431,12 @@ return redirect()->route('cartlist')->with('message', 'Something went wrong');
             return view('admin/addwalletamount',compact('franchiselist'));
     }
     public function listofwalletamount(){
-        $walletlists = addwallet::with('boydetails')->get();
+
+        $walletlists = addwallet::with('boydetails','franchisedeatails','created_users')->get();
+        // echo "<pre>";
+        // print_r($walletlists);
+        // exit;
+        // dd($walletlists);
         return view('admin/listofwalletamount',compact('walletlists'));
     }
     public function addamountwallet(Request $request){
@@ -440,6 +451,7 @@ return redirect()->route('cartlist')->with('message', 'Something went wrong');
             $sql->franchiseid = $request->franchise;
             $sql->cashtype = $request->cashtype;
             $sql->payment_ref = $uniqueid;
+            $sql->created_user = \Auth::user()->id;
             $sql->save();
             
             // Check if the record exists

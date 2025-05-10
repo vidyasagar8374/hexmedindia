@@ -11,7 +11,9 @@ use App\Models\Package;
 use App\Models\ContactForm;
 use App\Models\Test;
 use App\Models\PackageDetail;
-
+use App\Exports\PackageList;
+use App\Exports\AssignPackageList;
+use Excel;
 class FranchiseControlController extends Controller
 {
     public function franchiselist()
@@ -19,6 +21,7 @@ class FranchiseControlController extends Controller
         // $franchisewallet = 
         
         $franchise = User::with('franchisedetails')->where('role', 2)->latest('id')->get();
+        // dd($franchise);
         return view('admin.franchiselist', compact('franchise'));
     }
     public function franchisedetails($id){
@@ -71,9 +74,15 @@ class FranchiseControlController extends Controller
     }
     public function packagelist()
     {
-        $packages = Package::latest('id')->get();
+        $packages = Package::with('createuser','updateuser')->latest('id')->get();
+        // dd($packages);
         return view('admin.package', compact('packages'));
     }
+    public function exportpackagelist(Request $request){
+        return Excel::download(new PackageList,'packagelist.xlsx');
+
+    }
+
     public function createpackage()
     {
         return view('admin.createpackage');
@@ -85,6 +94,7 @@ class FranchiseControlController extends Controller
         $create->price = $request->price;
         $create->cut_price = $request->adminprice;
         $create->is_active = $request->status;
+        $create->created_user = \Auth::user()->id ?? '';
         $create->save();
         return redirect()->back()->with('message', 'Package Created');
     }
@@ -103,7 +113,8 @@ class FranchiseControlController extends Controller
                 'package' => $request->name,
                 'price' => $request->price, 
                 'cut_price' => $request->adminprice, 
-                'is_active' => $request->status
+                'is_active' => $request->status,
+                'updated_user'=> \Auth::user()->id
             ]);
             return redirect()->route('packagelist')->with('message', 'Package Updated Successfully');
         }catch(Exception $e){
@@ -112,11 +123,17 @@ class FranchiseControlController extends Controller
             ]);
         }
     }
+    
+  
     public function assignpackage()
     {
-        $data = Package::with(['details.testdetails'])->get();
-        // dd($data);
+        $data = Package::with(['details.testdetails','createuser'])->get();
+        //  dd($data);
         return view('admin.assignpackage', compact('data'));
+    }
+    public function exportassignpackage(){
+        return Excel::download(new AssignPackageList,'assignpackagelist.xlsx');
+
     }
     public function assigntesttopackage()
     {
@@ -126,12 +143,14 @@ class FranchiseControlController extends Controller
     }
     public function assignpackagetotest(Request $request)
     {
+    //  dd($request);
         // if(!PackageDetail::where('package_id', $request->package)->first()){
             foreach($request->tests as $t){
             if(!PackageDetail::where('package_id', $request->package)->where('test_id', $t)->first()){
                 $package = new  PackageDetail;
                 $package->package_id = $request->package;
                 $package->test_id = $t;
+                $package->created_user = \Auth::user()->id;
                 $package->save();
             }
         }

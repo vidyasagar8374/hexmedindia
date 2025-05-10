@@ -14,6 +14,8 @@ use App\Models\Package;
 use App\Models\notification;
 use Carbon\Carbon;
 use App\Traits\SaveTextAndIdTrait;
+use App\Exports\BookingHistory;
+use Maatwebsite\Excel\Facades\Excel;
 // use notificationTrait;
 
 
@@ -143,11 +145,12 @@ class TestBokkingController extends Controller
     
     public function bookinghistory(Request $request){
     //   dd('bug fixing in progress');
+    //   $download = 'select uuid,cumstomer,test';
         // $notifications = Notification::latest()->take(3)->get();
         $franchise = \DB::table('users')->where('role', 2)->where('is_verified', 1)->select('id', 'name', 'email')->get();
         if(\Auth::user()->role == 1)
         {
-            $data = BookedTest::with(['testdetails.name', 'packagedetails.pc', 'boydetails'])
+            $data = BookedTest::with(['testdetails.name', 'packagedetails.pc', 'boydetails','frachisedetails'])
             ->latest('id')
                 
             ->when($request->date, function ($query) use ($request) {
@@ -162,12 +165,17 @@ class TestBokkingController extends Controller
             //         $subQuery->where('name', 'like', '%' . $request->name . '%');
             //     });
             // })
+        //    ->get();
+        //     dd(count($data));
             ->paginate(1500);
             // dd($data);
             $date = '';
             if($request->date){
-                $date = $request->date;
+                $date = $request->date; 
             }
+            // echo "<pre>";
+            // print_r($data);
+            // exit;
             return view('admin.bookinghistory', compact('data', 'date', 'franchise'));
         }else{
             // dd(111111111111111);
@@ -192,10 +200,14 @@ class TestBokkingController extends Controller
         }
         
     }
+    public function bookinghistoryExpory()
+{
+
+    return Excel::download(new BookingHistory, 'bookingHistory.xlsx');
+}
     public function viewtestdetails($id){
         $tests = Test::where('isactive', 'Active')->get();
         $data = BookedTest::with(['testdetails', 'boydetails'])->where('id', $id)->first();
-        // dd($data);
         return view('franchise.viewtestdetails', compact('data', 'tests'));
     }
     public function updatetest(Request $request){

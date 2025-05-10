@@ -34,6 +34,53 @@
             </div>
           </div>
 
+          <!-- password-reset -->
+            <div class="card">
+           
+              <div class="card-header">
+                <h5>Password Reset</h5>
+              </div>
+              <div class="card-body">
+              @if(session('success'))
+                <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form class="form" action="{{ route('updatepofilepasswd') }}">
+                  @csrf
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingInput" name="password" placeholder="password" required>
+                    <label for="floatingInput">Password</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" name="confirm-password" placeholder="Confirm Password" required>
+                    <label for="floatingPassword">Confirm Password</label>
+                  </div>
+                  <ul>
+                    <li>Password must be at least 8 characters</li>
+                    <li>include at least one special - @ or &</li>
+                    <li>one number.</li>
+                    <li>Ex : Premkumar@1234</li>
+                  </ul>
+                  
+                  <button type="submit"  class="col-12 btn btn-primary">updated Password</button>
+                
+                </form>
+              </div>
+              
+            </div>
+          <!-- password-reset -->
+
         </div>
 
         <div class="col-xl-8">

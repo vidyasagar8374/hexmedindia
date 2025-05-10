@@ -32,7 +32,9 @@
                   <th scope="col">Id</th>
                   <th scope="col">Amount</th>
                   <th scope="col">Reference</th>
+                  <th scope="col">Date</th>
                   <th scope="col">Franchise</th>
+                  <th scope="col">Deposited By</th>
                   <th scope="col">Payment Type</th>
                   
                 </tr>
@@ -40,12 +42,14 @@
               <tbody>
                 @foreach($walletlists as $row)
                 <tr>
-                  <th scope="row">{{$row->id}}</th>
-                  <td>{{$row->amount}}</td>
-                  <td>{{$row->reference}}</td>
-                  <td>{{$row->boydetails->email}}</td>
-                  <td>{{ $row->cashtype }}</td>
-                </tr>
+                <th>{{ $row->id }}</th>
+                <td>{{ $row->amount }}</td>  
+                <td>{{ $row->reference }}</td>
+                <td>{{ $row->created_at->format('d-m-Y') }}</td>
+                <td>{{ $row->franchisedeatails->pluck('tradename')->implode(', ') }}</td>
+                <td>{{ $row->created_users->name ?? '' }}</td>
+                <td>{{ $row->cashtype }}</td>
+              </tr>
                 @endforeach
                 
               </tbody>

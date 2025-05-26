@@ -140,6 +140,7 @@ Route::group(['prefix' => 'admin'], function () {
     
     Route::get('/franchiselist', [FranchiseControlController::class, 'franchiselist'])->name('franchiselist');
     Route::get('/franchisedetails/{id}', [FranchiseControlController::class, 'franchisedetails'])->name('franchisedetails');
+    Route::post('/updatelimit', [FranchiseControlController::class, 'updatelimit'])->name('update.limit');
     Route::post('/approvefranchise', [FranchiseControlController::class, 'approvefranchise'])->name('approvefranchise');
     Route::get('/listoffranchise', [FranchiseControlController::class, 'listoffranchise'])->name('listoffranchise'); 
     Route::get('/managetest', [TestCreateController::class, 'managetest'])->name('managetest');

@@ -8,6 +8,7 @@ use App\Models\Wallet;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Models\Package;
+use App\Models\FranchiseOwnerDetails;
 use App\Models\ContactForm;
 use App\Models\Test;
 use App\Models\PackageDetail;
@@ -53,6 +54,38 @@ class FranchiseControlController extends Controller
         }
         
     }
+          public function updateLimit(Request $request)
+                {
+                    try {
+                        $request->validate([
+                            'id' => 'required|exists:franchise_owner_details,id',
+                            'limit_req' => 'required|numeric|min:0'
+                        ]);
+
+                        $franchise = FranchiseOwnerDetails::findOrFail($request->id);
+                        $franchise->limit_req = $request->limit_req;
+                        $franchise->save();
+
+                        return response()->json([
+                            'success' => true,
+                            'message' => 'Limit updated successfully.'
+                        ]);
+                    } catch (\Illuminate\Validation\ValidationException $e) {
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'Validation error.',
+                            'errors' => $e->errors()
+                        ], 422);
+                    } catch (\Exception $e) {
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'Something went wrong.',
+                            'error' => $e->getMessage()
+                        ], 500);
+                    }
+                }
+
+
 
 
     public function listoffranchise(){

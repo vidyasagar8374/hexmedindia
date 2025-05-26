@@ -13,6 +13,7 @@ use App\Models\cart;
 use App\Models\orders;
 use App\Models\transactiondetails;
 use App\Models\orderproducts;
+use App\Models\FranchiseOwnerDetails;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use App\Traits\TransactionTrait;
@@ -89,11 +90,13 @@ class samplecollectioncontroller extends Controller
     public function raiserequest(Request $request){
         
          try{
+
+                          
                 $trans = 'HEX-' . Carbon::now()->timestamp;
                 $sampleids = $request->sample;
           
                 $totalPrice = \DB::table('booked_test_details')->whereIn('ref_id', $sampleids)->sum('deduct_price');
-               // dd($totalPrice);
+                // dd($totalPrice);
                if(\Auth::user()->sis == 1){
                     DB::beginTransaction();
                     // Wallet::where('franchise_id',\Auth::user()->id)->decrement('amount', $totalPrice); 
@@ -118,8 +121,10 @@ class samplecollectioncontroller extends Controller
                     DB::commit();
                     return redirect()->back()->with('message', 'Request Raised successfully!');
                }
-              
-                if(($totalPrice + 2000) <= Wallet::where('franchise_id',\Auth::user()->id)->pluck('amount')->first()){
+            //   $walletamount = Wallet::where('franchise_id',\Auth::user()->id)->pluck('amount')->first();
+            //    dd($walletamount);
+                 $limit_value = FranchiseOwnerDetails::where('franchise_id',\Auth::user()->id)->pluck('limit_req')->first();
+                if(($totalPrice + $limit_value) <= Wallet::where('franchise_id',\Auth::user()->id)->pluck('amount')->first()){
                     DB::beginTransaction();
                     Wallet::where('franchise_id',\Auth::user()->id)->decrement('amount', $totalPrice); 
                     $transicationdetails = new transactiondetails;
@@ -152,6 +157,8 @@ class samplecollectioncontroller extends Controller
 
         
     }
+
+  
     public function collectionrequests(){
         $franchise = User::with(['requestdetails.frachisedCollections'])->where('role', 2)->where('is_verified', 1)->get();
         // dd($franchise);
@@ -497,5 +504,7 @@ return redirect()->route('cartlist')->with('message', 'Something went wrong');
 
 
     }
+
+
     
 }

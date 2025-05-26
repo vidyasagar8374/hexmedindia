@@ -78,6 +78,20 @@
                     <div class="col-lg-9 col-md-8">{{$details->franchisedetails->address ?? ''}}</div>
                   </div>
 
+                @if($details->sis != 1)
+                 <div class="row">
+                    <div class="form-group col-lg-3 col-sm-12">
+                      <label for="limit_req" class="label">Limit Request</label>
+                  </div>
+                  <div class="d-flex gap-2 col-md-4">
+                      <input type="text" class="form-control" id="limit_req" 
+                            placeholder="" 
+                            value="{{ $details->franchisedetails->limit_req ?? '' }}" >
+                            <button class="btn btn-sm btn-primary" onclick="updateLimit('{{ $details->franchisedetails->id }}')">Update Limit</button>
+                    </div>
+                  </div>
+                @endif
+
                   <!-- <div class="row">
                     <div class="col-lg-3 col-md-4 label">Password</div>
                     <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
@@ -155,7 +169,6 @@
                   </div>
                   
 
-
                   <div class="row" id="approved" style="display:none">
                     <div class="col-md-6">
                       <div class="col-lg-9 col-md-8 w-100"><button disabled class="btn btn-primary btn-sm w-50">Accepted</button></div>
@@ -227,7 +240,42 @@
       $('#rejected').show();
     }
 
+
+
 });
+
+function updateLimit(franchiseId) {
+  limitValue = $('#limit_req').val();
+    fetch("{{ route('update.limit') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({
+            limit_req: limitValue,
+            id: franchiseId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success){
+            alert('Limit updated successfully.');
+        } else {
+            alert('Failed to update limit.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred.');
+    });
+}
+
+
+
+
+
+
   function ApproveFranchise(id, status){
     debugger
   $.ajax({

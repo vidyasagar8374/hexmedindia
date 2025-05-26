@@ -70,6 +70,7 @@
                     <li>Password must be at least 8 characters</li>
                     <li>include at least one special - @ or &</li>
                     <li>one number.</li>
+                    <li>one Upper Case letter.</li>
                     <li>Ex : Premkumar@1234</li>
                   </ul>
                   
